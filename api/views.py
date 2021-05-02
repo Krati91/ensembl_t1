@@ -11,15 +11,26 @@ from .models import GeneAutocomplete
 
 class GeneSuggest(APIView):
     def get(self, request):
-        query_term = "%" + request.GET['query'] + "%"
-        query_species = request.GET['species']
-        query_limit = int(request.GET['limit'])
+        try:
+            query_term = "%" + request.GET['query'] + "%"
+            query_species = request.GET['species']
+            query_limit = int(request.GET['limit'])
+        except Exception as e:
+            return Response(
+                {"message": str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         query = 'SELECT display_label FROM gene_autocomplete WHERE display_label LIKE %s AND species=%s LIMIT %s'
 
         with connection.cursor() as cursor:
-            cursor.execute(query, [
-                query_term, query_species, query_limit])
+            try:
+                cursor.execute(query, [
+                    query_term, query_species, query_limit])
+            except Exception as e:
+                return Response(
+                    {'message': str(e)},
+                    status=status.HTTP_400_BAD_REQUEST)
 
             rows = [label[0] for label in cursor.fetchall()]
 
