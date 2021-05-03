@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+from .utils import error_prompt
 # Create your views here.
 
 
@@ -18,10 +19,7 @@ class GeneSuggest(APIView):
             query_species = request.GET['species']
             query_limit = int(request.GET['limit'])
         except Exception as e:
-            return Response(
-                {"error": str(e)},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return error_prompt(e)
 
         query = 'SELECT display_label FROM gene_autocomplete WHERE display_label LIKE %s AND species=%s LIMIT %s'
 
@@ -30,9 +28,7 @@ class GeneSuggest(APIView):
                 cursor.execute(query, [
                     query_term, query_species, query_limit])
             except Exception as e:
-                return Response(
-                    {'error': str(e)},
-                    status=status.HTTP_400_BAD_REQUEST)
+                return error_prompt(e)
 
             rows = [label[0] for label in cursor.fetchall()]
 
