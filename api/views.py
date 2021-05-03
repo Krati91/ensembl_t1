@@ -5,19 +5,21 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import GeneAutocomplete
 # Create your views here.
 
 
 class GeneSuggest(APIView):
     def get(self, request):
+        '''
+        To return the list of display labels as per the values passed in query, species and limit request parameters.
+        '''
         try:
             query_term = "%" + request.GET['query'] + "%"
             query_species = request.GET['species']
             query_limit = int(request.GET['limit'])
         except Exception as e:
             return Response(
-                {"message": str(e)},
+                {"error": str(e)},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
@@ -29,9 +31,10 @@ class GeneSuggest(APIView):
                     query_term, query_species, query_limit])
             except Exception as e:
                 return Response(
-                    {'message': str(e)},
+                    {'error': str(e)},
                     status=status.HTTP_400_BAD_REQUEST)
 
             rows = [label[0] for label in cursor.fetchall()]
 
-        return Response(rows, status=status.HTTP_200_OK)
+        return Response(rows,
+                        status=status.HTTP_200_OK)
