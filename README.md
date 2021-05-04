@@ -5,8 +5,7 @@
 **Name** : `/gene_suggest`  
 **Method** : GET  
 **Description** : Get a list of genome display labels from ensembl database  
-  
-**Required Parameters**  
+**Required Parameters** :   
 1. **query**  
    Data Type : string  
    Description : any valid string from the display labels  
