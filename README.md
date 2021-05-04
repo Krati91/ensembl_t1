@@ -23,4 +23,4 @@
 4. To view the working application [click here](https://ensembl.herokuapp.com/gene_suggest?query=brc&species=gorilla_gorilla&limit=10).  
 
 **TESTING**  
-1. For unit testing tests.py is loaded with 5 test cases.  
+1. For unit testing tests.py is already loaded with 5 test cases. More can be added to test more scenarios.  
