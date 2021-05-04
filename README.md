@@ -4,7 +4,7 @@
 
 **Name** : `/gene_suggest`  
 **Method** : GET  
-**Description** : Get a list of genome display labels from ensemble database  
+**Description** : Get a list of genome display labels from ensembl database  
   
 **Required Parameters**  
 1. **query**  
