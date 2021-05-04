@@ -23,7 +23,6 @@ def get_rows(query, *params):
         try:
             cursor.execute(query, params)
         except Exception as e:
-            print(e)
             return error_prompt(e)
 
         rows = [label[0] for label in cursor.fetchall()]
