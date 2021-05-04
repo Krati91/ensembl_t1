@@ -1,11 +1,11 @@
 # ENSEMBL REST WEB SERVICE  
 
-<h3>API</h3>  
+**API SPECIFICATIONS**  
 **Name** : `/gene_suggest`  
 **Method** : GET  
-**Description** : Search for genome display labels from ensemble database
-<hr>
-<h5>Required Parameters</h5>
+**Description** : Search for genome display labels from ensemble database  
+  
+**Required Parameters**
 1. **query**  
    Data Type : string  
   **Description** : any valid string from the display labels  
