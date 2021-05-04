@@ -18,7 +18,9 @@ params = {
 request = factory.get('/gene_suggest/', params)
 response = view(request)
 
-print(response.data)
+assert(response.status_code == 200)
+assert(isinstance(response.data, list))
+
 
 # Test Case 2
 params2 = {
@@ -30,7 +32,9 @@ params2 = {
 request2 = factory.get('/gene_suggest/', params2)
 response2 = view(request2)
 
-print(response2.data)
+assert(response2.status_code == 200)
+assert(isinstance(response2.data, list))
+
 
 # Test Case 3
 params3 = {
@@ -41,7 +45,9 @@ params3 = {
 request3 = factory.get('/gene_suggest/', params3)
 response3 = view(request3)
 
-print(response3.data)
+assert(response3.status_code == 400)
+assert(isinstance(response3.data, dict))
+
 
 # Test Case 4
 params4 = {
@@ -51,7 +57,8 @@ params4 = {
 request4 = factory.get('/gene_suggest/', params4)
 response4 = view(request4)
 
-print(response4.data)
+assert(response4.status_code == 400)
+assert(isinstance(response4.data, dict))
 
 
 # Test Case 5
@@ -64,4 +71,5 @@ params5 = {
 request5 = factory.get('/gene_suggest/', params5)
 response5 = view(request5)
 
-print(response5.data)
+assert(response5.status_code == 200)
+assert(isinstance(response5.data, list))
