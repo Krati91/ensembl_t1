@@ -1,3 +1,5 @@
+# Requirements for this application
+
 asgiref==3.3.4
 autopep8==1.5.7
 Django==3.2
