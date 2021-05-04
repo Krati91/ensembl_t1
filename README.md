@@ -1,6 +1,7 @@
 # ENSEMBL REST WEB SERVICE  
 
 **API SPECIFICATIONS**  
+
 **Name** : `/gene_suggest`  
 **Method** : GET  
 **Description** : Get a list of genome display labels from ensemble database  
