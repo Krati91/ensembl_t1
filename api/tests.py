@@ -1,75 +1,65 @@
 from django.test import TestCase
 
+from rest_framework import status
 from rest_framework.test import APIRequestFactory
 
 from .views import GeneSuggest
 # Create your tests here.
 
-factory = APIRequestFactory()
-view = GeneSuggest.as_view()
 
-# Test Case 1
-params = {
-    'query': 'brc',
-    'species': 'homo_sapiens',
-    'limit': '10'
-}
+def setUp():
+    factory = APIRequestFactory()
+    url = '/gene_suggest'
+    view = GeneSuggest.as_view()
 
-request = factory.get('/gene_suggest/', params)
-response = view(request)
-
-assert(response.status_code == 200)
-assert(isinstance(response.data, list))
+    return factory, url, view
 
 
-# Test Case 2
-params2 = {
-    'query': 'brc',
-    'species': 'gorilla_gorilla',
-    'limit': '20'
-}
+def test_valid_params():
+    valid_params = [{
+        'query': 'brc',
+        'species': 'homo_sapiens',
+        'limit': '10'
+    },
+        {
+        'query': 'brc',
+        'species': 'gorilla_gorilla',
+        'limit': '20'
+    },
+        {
+        'query': 'brc',
+        'species': 'chelonoidis_abingdonii',
+        'limit': '20'
+    }]
 
-request2 = factory.get('/gene_suggest/', params2)
-response2 = view(request2)
+    factory, url, view = setUp()
 
-assert(response2.status_code == 200)
-assert(isinstance(response2.data, list))
+    for params in valid_params:
+        request = factory.get(url, params)
+        response = view(request)
 
-
-# Test Case 3
-params3 = {
-    'query': 'brc',
-    'species': 'homo_sapiens'
-}
-
-request3 = factory.get('/gene_suggest/', params3)
-response3 = view(request3)
-
-assert(response3.status_code == 400)
-assert(isinstance(response3.data, dict))
-
-
-# Test Case 4
-params4 = {
-    'query': 'brc'
-}
-
-request4 = factory.get('/gene_suggest/', params4)
-response4 = view(request4)
-
-assert(response4.status_code == 400)
-assert(isinstance(response4.data, dict))
+        assert response.status_code == 200
+        assert isinstance(response.data, list)
 
 
-# Test Case 5
-params5 = {
-    'query': 'brc',
-    'species': 'chelonoidis_abingdonii',
-    'limit': '20'
-}
+def test_invalid_params():
+    invalid_params = [{
+        'query': 'brc',
+        'species': 'homo_sapiens'
+    },
+        {
+        'query': 'brc'
+    }]
 
-request5 = factory.get('/gene_suggest/', params5)
-response5 = view(request5)
+    factory, url, view = setUp()
 
-assert(response5.status_code == 200)
-assert(isinstance(response5.data, list))
+    for params in invalid_params:
+        request = factory.get(url, params)
+        response = view(request)
+
+        assert response.status_code == 400
+        assert isinstance(response.data, dict)
+
+
+test_valid_params()
+test_invalid_params()
