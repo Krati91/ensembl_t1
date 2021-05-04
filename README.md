@@ -18,5 +18,9 @@
   
 **DEPLOYMENT**
 1. For cloud based deployment various PaaS and IaaS providers support Django app deployment eg:- [Heroku](https://devcenter.heroku.com/articles/deploying-python), [PythonAnywhere](https://help.pythonanywhere.com/pages/DeployExistingDjangoProject/), [Amazon Web Services](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html) etc.    
-2. For now, the application has been hosted on Heroku with free resources, since it is a POC. Scaling up with the increase in traffic might require upgrading to paid resources. For more flexibility an IaaS provider is also an option.  
-3. To view the working application [click here](https://ensembl.herokuapp.com/gene_suggest?query=brc&species=gorilla_gorilla&limit=10).  
+2. For now, the application has been hosted on Heroku with free resources, since it is a POC. 
+3. Scaling up with the increase in traffic can be solved by using load balancer and caching the most searched responses, in case the data is static otherwise, the one that requires most time to load.
+4. To view the working application [click here](https://ensembl.herokuapp.com/gene_suggest?query=brc&species=gorilla_gorilla&limit=10).  
+
+**TESTING**  
+1. For unit testing tests.py is loaded with 5 test cases.  
