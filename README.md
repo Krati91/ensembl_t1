@@ -22,11 +22,11 @@
 3. Scaling up with the increase in traffic can be solved by using load balancer and caching the most searched responses, in case the data is static otherwise, the one that requires most time to load.
 4. To view the working application with parameters set to 'brc', 'gorilla_gorilla' and 10 respectively [click here](https://ensembl.herokuapp.com/gene_suggest?query=brc&species=gorilla_gorilla&limit=10).  
 5. For deployment on heroku these steps followed:    
-   * A Procfile with 
+   * A Procfile with  
      `web: gunicorn ensembl.wsgi --log-file -`  
-   * A requirements.txt file with all the requirements including **gunicorn** and **whitenoise** specifically required for heroku
+   * A requirements.txt file with all the requirements including **gunicorn** and **whitenoise** specifically required for heroku  
      `pip freeze > requiremets.txt`  
-   * Updating settings.py with 
+   * Updating settings.py with  
      `STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'`  
    * On heroku dashboard create a new app and use Github as Deployment method
    * Connect the repository for the app  
