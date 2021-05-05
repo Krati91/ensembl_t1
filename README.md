@@ -24,8 +24,8 @@
 5. For deployment on heroku these steps were followed:    
    * A Procfile with  
      `web: gunicorn ensembl.wsgi --log-file -`  
-   * A requirements.txt file with all the requirements including **gunicorn** and **whitenoise** specifically required for heroku  
-     `pip freeze > requiremets.txt`  
+   * A requirements.txt file with all the requirements, including **gunicorn** and **whitenoise**, specifically required for heroku  
+     `pip freeze > requirements.txt`  
    * Updating settings.py with  
      `STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'`  
    * On heroku dashboard create a new app and use Github as Deployment method
