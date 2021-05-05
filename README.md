@@ -23,4 +23,5 @@
 4. To view the working application with parameters set to 'brc', 'gorilla_gorilla' and 10 respectively [click here](https://ensembl.herokuapp.com/gene_suggest?query=brc&species=gorilla_gorilla&limit=10).  
 
 **TESTING**  
-1. For testing tests.py is already loaded with 5 test cases. More can be added to test more scenarios.  
+1. For testing tests.py is already loaded with 5 test cases. But Django TestCase can't be used as it requires read and write permissions to the database.
+2. POSTMAN can be used for api testing.  

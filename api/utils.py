@@ -19,6 +19,7 @@ def get_rows(query, *params):
     '''
     Returns a Response object with data as a list of values from the first field in the query if the query executes successfully else error
     '''
+    
     with connection.cursor() as cursor:
         try:
             cursor.execute(query, params)

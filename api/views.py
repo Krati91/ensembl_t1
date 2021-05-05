@@ -1,14 +1,19 @@
-# File for api requests processing
-
 from django.shortcuts import render
+from django.conf import settings
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 from rest_framework.views import APIView
 
 from .utils import error_prompt, get_rows
 # Create your views here.
 
+CACHE_TTL = getattr(settings, 'CACHE_TTL')
+
 
 class GeneSuggest(APIView):
+
+    @method_decorator(cache_page(CACHE_TTL))
     def get(self, request):
         '''
         To return the list of display labels as per the values passed in query, species and limit request parameters.
