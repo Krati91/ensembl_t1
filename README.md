@@ -21,7 +21,7 @@
 2. For now, the application has been hosted on Heroku with free resources, since it is a POC. 
 3. Scaling up with the increase in traffic can be solved by using load balancer and caching the most searched responses, in case the data is static otherwise, the one that requires most time to load.
 4. To view the working application with parameters set to 'brc', 'gorilla_gorilla' and 10 respectively [click here](https://ensembl.herokuapp.com/gene_suggest?query=brc&species=gorilla_gorilla&limit=10).  
-5. For deployment on heroku these steps followed:    
+5. For deployment on heroku these steps were followed:    
    * A Procfile with  
      `web: gunicorn ensembl.wsgi --log-file -`  
    * A requirements.txt file with all the requirements including **gunicorn** and **whitenoise** specifically required for heroku  
